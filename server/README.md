@@ -1,6 +1,7 @@
 # OpenLPS static update service
 
-This directory is the source for the future GitHub Pages update endpoint.
+This directory is the source for the live GitHub Pages service at
+`https://crtooy-codes.github.io/network-toolkit/`.
 GitHub Releases will hold the large APK and core assets; Pages only publishes
 small manifests, signatures and documentation.
 
@@ -10,9 +11,9 @@ If a manifest is added later, the workflow requires both `manifest.json` and
 signature decodes to exactly 64 bytes. The app still performs the authoritative
 Ed25519 verification. The status endpoint is `health.json`.
 
-After the repository is created, enable **Settings → Pages → Source: GitHub
-Actions**. Every push to `main` that changes the public service will then
-redeploy it without requiring this development computer to remain online.
+GitHub Pages is configured to use GitHub Actions. Every push to `main` that
+changes the public service redeploys it without requiring this development
+computer to remain online.
 
 ## Security gate
 

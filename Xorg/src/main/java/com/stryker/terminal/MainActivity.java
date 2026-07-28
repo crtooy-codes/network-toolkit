@@ -868,6 +868,7 @@ public class MainActivity extends AppCompatActivity implements NeoXorgViewClient
 
   @Override
   public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     if (permissions.length == 0 || grantResults.length == 0) {
       Log.i("SDL", "libSDL: Permission request dialog was aborted");
       return;

@@ -4,7 +4,7 @@
 > exclusivamente autorizados.
 
 Esta é a nova geração comunitária mantida pela OpenLPS, atualmente em
-desenvolvimento como `5.0.0-dev.1`. Ela preserva o motor root/chroot comprovado
+desenvolvimento como `5.0.0-dev.2`. Ela preserva o motor root/chroot comprovado
 do StrykerOSS e está migrando identidade visual, caminhos, atualizações,
 documentação e interface para uma base própria.
 
@@ -15,6 +15,10 @@ documentação e interface para uma base própria.
   simplificado
 - **Licença**: [GNU GPL v3.0](LICENSE)
 - **Estado**: desenvolvimento; ainda não recomendado para uso diário
+- **Repositório oficial**:
+  [crtooy-codes/network-toolkit](https://github.com/crtooy-codes/network-toolkit)
+- **Status do serviço**:
+  [OpenLPS Update Service](https://crtooy-codes.github.io/network-toolkit/)
 
 ## Uso responsável
 
@@ -173,7 +177,10 @@ app/
 
 ## Contributing
 
-PRs and issues are welcome at [github.com/zalexdev/strykerapp](https://github.com/zalexdev/strykerapp).
+PRs and issues for the OpenLPS continuation are welcome at
+[github.com/crtooy-codes/network-toolkit](https://github.com/crtooy-codes/network-toolkit).
+For the historical upstream project, see
+[github.com/zalexdev/strykerapp](https://github.com/zalexdev/strykerapp).
 
 When adding a feature:
 

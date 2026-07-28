@@ -22,6 +22,8 @@ freely, subject to the following restrictions:
 package com.stryker.terminal;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -134,6 +136,12 @@ class AudioThread {
   private int mRecorderBufferSize = 0;
 
   private byte[] startRecording(int rate, int channels, int encoding, int bufsize) {
+    if (mClient.getContext().checkSelfPermission(Manifest.permission.RECORD_AUDIO)
+      != PackageManager.PERMISSION_GRANTED) {
+      Log.i("SDL", "SDL: record audio permission is not granted");
+      return null;
+    }
+
     if (mRecordThread == null) {
       mRecordThread = new RecordingThread();
       mRecordThread.start();
