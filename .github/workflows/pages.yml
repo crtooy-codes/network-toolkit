@@ -1,0 +1,67 @@
+name: OpenLPS Update Service
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'server/public/**'
+      - 'server/schema/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Prepare static service
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/schema
+          cp -R server/public/. _site/
+          cp server/schema/manifest-v1.schema.json _site/schema/
+          if [[ -e _site/v1/manifest.json || -e _site/v1/manifest.json.sig ]]; then
+            test -s _site/v1/manifest.json
+            test -s _site/v1/manifest.json.sig
+            ! grep -q 'REPLACE_' _site/v1/manifest.json
+            python3 - <<'PY'
+          import base64
+          import json
+          from pathlib import Path
+
+          manifest = Path("_site/v1/manifest.json")
+          signature = Path("_site/v1/manifest.json.sig")
+          json.loads(manifest.read_text(encoding="utf-8"))
+          decoded = base64.b64decode(signature.read_text(encoding="ascii").strip(), validate=True)
+          if len(decoded) != 64:
+              raise SystemExit("manifest.json.sig must contain one 64-byte Ed25519 signature")
+          PY
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

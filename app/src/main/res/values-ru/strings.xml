@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_language_title">Язык приложения</string>
+    <string name="settings_language_system">Язык системы</string>
+    <string name="settings_language_dialog_title">Выберите язык</string>
+    <string name="intro_welcome_title">Добро пожаловать в OpenLPS</string>
+    <string name="intro_welcome_subtitle">Современный мобильный набор инструментов для исследований безопасности в разрешённых средах.</string>
+    <string name="intro_whats_inside">Возможности</string>
+    <string name="intro_feature_wifi">Аудит Wi-Fi</string>
+    <string name="intro_feature_lan">Локальная сеть</string>
+    <string name="intro_before_start">Перед началом</string>
+    <string name="intro_consent_authorized">Я понимаю, что инструмент предназначен только для разрешённого тестирования</string>
+    <string name="intro_consent_responsibility">Я полностью отвечаю за свои действия</string>
+    <string name="intro_consent_permission">Я буду тестировать только свои системы или системы с явным разрешением</string>
+    <string name="intro_start_installation">Начать установку</string>
+    <string name="intro_legal_footer">Открытый код · исследования и разрешённое тестирование</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_language_title">应用语言</string>
+    <string name="settings_language_system">跟随系统</string>
+    <string name="settings_language_dialog_title">选择语言</string>
+    <string name="intro_welcome_title">欢迎使用 OpenLPS</string>
+    <string name="intro_welcome_subtitle">用于授权环境安全研究的现代移动工具包。</string>
+    <string name="intro_whats_inside">主要功能</string>
+    <string name="intro_feature_wifi">Wi-Fi 审计</string>
+    <string name="intro_feature_lan">本地网络</string>
+    <string name="intro_before_start">开始之前</string>
+    <string name="intro_consent_authorized">我了解此工具仅用于授权测试</string>
+    <string name="intro_consent_responsibility">我对自己的行为承担全部责任</string>
+    <string name="intro_consent_permission">我只测试自有系统或已获得明确授权的系统</string>
+    <string name="intro_start_installation">开始安装</string>
+    <string name="intro_legal_footer">开源 · 仅限研究和授权测试</string>
+</resources>

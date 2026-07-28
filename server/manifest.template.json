@@ -1,0 +1,22 @@
+{
+  "manifest_version": 1,
+  "core": {
+    "version": "REPLACE_CORE_VERSION",
+    "chroot64": {
+      "url": "https://github.com/crtooy-codes/network-toolkit/releases/download/REPLACE_TAG/REPLACE_CORE_FILE",
+      "sha256": "REPLACE_64_HEX_SHA256",
+      "size": 0
+    }
+  },
+  "app": {
+    "versionCode": 0,
+    "versionName": "REPLACE_VERSION",
+    "url": "https://github.com/crtooy-codes/network-toolkit/releases/download/REPLACE_TAG/REPLACE_APK_FILE",
+    "sha256": "REPLACE_64_HEX_SHA256",
+    "size": 0,
+    "mandatory": false,
+    "changelog": "REPLACE_CHANGELOG"
+  },
+  "news": [],
+  "notifications": []
+}

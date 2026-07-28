@@ -1,0 +1,7 @@
+{
+  "service": "OpenLPS Update Service",
+  "status": "pre-release",
+  "manifest_available": false,
+  "remote_updates_enabled": false,
+  "reason": "Waiting for an offline signing key and verified release assets."
+}

@@ -1,0 +1,1 @@
+su -c "/data/data/com.openlps.networktoolkit/files/chroot_exec ash"

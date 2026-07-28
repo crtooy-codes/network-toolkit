@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_language_title">Idioma de la aplicación</string>
+    <string name="settings_language_system">Predeterminado del sistema</string>
+    <string name="settings_language_dialog_title">Elegir idioma</string>
+    <string name="intro_welcome_title">Bienvenido a OpenLPS</string>
+    <string name="intro_welcome_subtitle">Una herramienta móvil moderna para investigación de seguridad en entornos autorizados.</string>
+    <string name="intro_whats_inside">Qué incluye</string>
+    <string name="intro_feature_wifi">Auditoría Wi-Fi</string>
+    <string name="intro_feature_lan">Red local</string>
+    <string name="intro_before_start">Antes de comenzar</string>
+    <string name="intro_consent_authorized">Entiendo que esta herramienta es solo para pruebas autorizadas</string>
+    <string name="intro_consent_responsibility">Acepto toda la responsabilidad por mis acciones</string>
+    <string name="intro_consent_permission">Solo probaré sistemas propios o con permiso explícito</string>
+    <string name="intro_start_installation">Iniciar instalación</string>
+    <string name="intro_legal_footer">Código abierto · investigación y pruebas autorizadas</string>
+</resources>

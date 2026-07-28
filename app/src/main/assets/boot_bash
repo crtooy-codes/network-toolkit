@@ -1,0 +1,5 @@
+#!/system/bin/sh
+BUSYBOX=/data/data/com.openlps.networktoolkit/files/busybox
+MNT=/data/local/openlps/release/
+CHROOT_EXEC=/usr/bin/sudo
+$BUSYBOX chroot $MNT $CHROOT_EXEC -E PATH=$PATH ash
