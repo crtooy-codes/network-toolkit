@@ -20,8 +20,8 @@ public final class PromoDialogs {
     private static final String KEY_GITHUB = "github_done";
     private static final String KEY_BLOG = "blog_done";
 
-    private static final String GITHUB_URL = "https://github.com/zalexdev/strykerapp";
-    private static final String BLOG_URL = "https://zalexdev.com";
+    private static final String GITHUB_URL = "https://github.com/crtooy-codes/network-toolkit";
+    private static final String BLOG_URL = "https://crtooy-codes.github.io/network-toolkit/";
 
     private static final int MIN_LAUNCHES = 3;
     private static final int SHOW_PERCENT = 30;

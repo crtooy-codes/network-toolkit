@@ -1092,9 +1092,9 @@
     <string name="about_section_links">Official links</string>
     <string name="about_section_legal">Legal</string>
     <string name="about_link_site_label">Project site</string>
-    <string name="about_link_site_url" translatable="false">zalexdev.com</string>
+    <string name="about_link_site_url" translatable="false">crtooy-codes.github.io/network-toolkit</string>
     <string name="about_link_github_label">Source code</string>
-    <string name="about_link_github_url" translatable="false">github.com/zalexdev/strykerapp</string>
+    <string name="about_link_github_url" translatable="false">github.com/crtooy-codes/network-toolkit</string>
     <string name="about_oss_licenses_label">Open-source licenses</string>
     <string name="license_subtitle">OpenLPS is built on these open-source projects. Tap an entry to open its source.</string>
     <string name="about_footer">OpenLPS Network Toolkit — derived from StrykerOSS — GNU GPL v3.0 — authorized testing only</string>

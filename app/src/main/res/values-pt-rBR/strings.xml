@@ -78,6 +78,13 @@
     <string name="drawer_usb_arsenal">Arsenal USB</string>
     <string name="drawer_core_manager">Gerenciador do núcleo</string>
     <string name="drawer_about">Sobre</string>
+    <string name="promo_github_title">Gostando do OpenLPS?</string>
+    <string name="promo_github_message">O OpenLPS é gratuito e de código aberto. Se ele for útil, uma estrela no GitHub ajuda o projeto a crescer e alcançar mais pessoas.</string>
+    <string name="promo_github_action">Dar estrela no GitHub</string>
+    <string name="promo_later">Talvez depois</string>
+    <string name="promo_blog_title">Acompanhe as novidades</string>
+    <string name="promo_blog_message">Novas ferramentas, notas de versão e atualizações do projeto são publicadas no site do OpenLPS.</string>
+    <string name="promo_blog_action">Visitar o site</string>
 
     <string name="setup_permissions_title">Permissões</string>
     <string name="setup_permissions_subtitle">A OpenLPS precisa de root e armazenamento para executar o núcleo isolado e salvar os resultados dos testes.</string>

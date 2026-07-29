@@ -7,6 +7,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.DhcpInfo;
+import android.net.LinkAddress;
+import android.net.LinkProperties;
+import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -37,6 +40,8 @@ import com.zalexdev.stryker.custom.Device;
 import com.zalexdev.stryker.localnetwork.utils.AdvancedLocalScanner;
 import com.zalexdev.stryker.utils.Core;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -359,10 +364,53 @@ public class LocalMain extends Fragment {
         DhcpInfo dhcp = wifiManager.getDhcpInfo();
         if (dhcp != null) {
             networkGateway.setText(intToIP(dhcp.gateway));
-            networkSubnet.setText(intToIP(dhcp.netmask));
             networkGateway.setTextColor(defaultText);
-            networkSubnet.setTextColor(defaultText);
         }
+
+        String subnet = getActiveIpv4Subnet();
+        if (subnet != null) {
+            networkSubnet.setText(subnet);
+            networkSubnet.setTextColor(defaultText);
+        } else if (dhcp != null && dhcp.netmask != 0) {
+            networkSubnet.setText(intToIP(dhcp.netmask));
+            networkSubnet.setTextColor(defaultText);
+        } else {
+            networkSubnet.setText("—");
+        }
+    }
+
+    private String getActiveIpv4Subnet() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager == null) return null;
+
+        Network activeNetwork = connectivityManager.getActiveNetwork();
+        if (activeNetwork == null) return null;
+
+        LinkProperties properties = connectivityManager.getLinkProperties(activeNetwork);
+        if (properties == null) return null;
+
+        for (LinkAddress linkAddress : properties.getLinkAddresses()) {
+            InetAddress address = linkAddress.getAddress();
+            if (!(address instanceof Inet4Address)) continue;
+
+            int prefixLength = linkAddress.getPrefixLength();
+            byte[] bytes = address.getAddress();
+            int addressValue = ((bytes[0] & 0xff) << 24)
+                    | ((bytes[1] & 0xff) << 16)
+                    | ((bytes[2] & 0xff) << 8)
+                    | (bytes[3] & 0xff);
+            int mask = prefixLength == 0 ? 0 : -1 << (32 - prefixLength);
+            int network = addressValue & mask;
+
+            return String.format(Locale.ENGLISH, "%d.%d.%d.%d/%d",
+                    (network >>> 24) & 0xff,
+                    (network >>> 16) & 0xff,
+                    (network >>> 8) & 0xff,
+                    network & 0xff,
+                    prefixLength);
+        }
+        return null;
     }
 
     private void pickLocalInterface() {

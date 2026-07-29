@@ -28,8 +28,8 @@ import java.util.List;
 
 public class AboutFragment extends Fragment {
 
-    private static final String SITE_URL = "https://zalexdev.com";
-    private static final String GITHUB_URL = "https://github.com/zalexdev/strykerapp";
+    private static final String SITE_URL = "https://crtooy-codes.github.io/network-toolkit/";
+    private static final String GITHUB_URL = "https://github.com/crtooy-codes/network-toolkit";
 
     private float entranceTranslation;
 

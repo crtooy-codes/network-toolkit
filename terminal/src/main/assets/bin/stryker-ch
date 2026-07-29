@@ -1,7 +1,7 @@
 #!/system/bin/sh
 # Version: 2.3.0
 #
-# Stryker Terminal chroot entry. Built into the main Stryker app: we reuse the
+# OpenLPS Terminal chroot entry. Built into the main OpenLPS app: we reuse the
 # app's own chroot environment (bootroot_env -> BUSYBOX + MNT + validation), so
 # the session is identical to what the app uses, with the full toolset
 # (Metasploit / Nmap / Nuclei / Hydra / SearchSploit).
@@ -11,16 +11,16 @@
 # is unavailable in the rootfs we fall back to a plain `ash -l` (current
 # behaviour), so there is never a regression.
 
-STRYKER_FILES=/data/data/com.zalexdev.stryker/files
+OPENLPS_FILES=/data/data/com.openlps.networktoolkit/files
 
 # Wide Android PATH (include common su manager locations).
-export PATH=$STRYKER_FILES/usr/bin:$STRYKER_FILES/usr/sbin:/sbin:/system/bin:/system/xbin:/system/sbin:/su/bin:/magisk/.core/bin:/debug_ramdisk:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/odm/bin:/vendor/bin:.
+export PATH=$OPENLPS_FILES/usr/bin:$OPENLPS_FILES/usr/sbin:/sbin:/system/bin:/system/xbin:/system/sbin:/su/bin:/magisk/.core/bin:/debug_ramdisk:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/odm/bin:/vendor/bin:.
 
 clear
 
-if [ ! -e "$STRYKER_FILES/bootroot_env" ]; then
-    echo "[-] $STRYKER_FILES/bootroot_env missing."
-    echo "    Open the Stryker app once so it sets up and mounts its chroot,"
+if [ ! -e "$OPENLPS_FILES/bootroot_env" ]; then
+    echo "[-] $OPENLPS_FILES/bootroot_env missing."
+    echo "    Open the OpenLPS app once so it sets up and mounts its chroot,"
     echo "    then reopen the terminal."
     exit 2
 fi
@@ -37,7 +37,7 @@ done
 # As root: source the app's chroot env, then enter with a controlling tty
 # (setsid -c) when the rootfs provides setsid, else fall back to plain ash -l.
 exec "$SU" -c '
-. /data/data/com.zalexdev.stryker/files/bootroot_env
+. /data/data/com.openlps.networktoolkit/files/bootroot_env
 if [ -x "$MNT/usr/bin/setsid" ] || [ -x "$MNT/bin/setsid" ]; then
     exec "$BUSYBOX" chroot "$MNT" setsid -c /bin/ash -l
 else

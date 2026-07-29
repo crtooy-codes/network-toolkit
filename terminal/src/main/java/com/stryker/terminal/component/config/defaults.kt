@@ -25,7 +25,7 @@ object DefaultValues {
 
 object NeoTermPath {
   @SuppressLint("SdCardPath")
-  const val ROOT_PATH = "/data/data/com.zalexdev.stryker/files"
+  const val ROOT_PATH = "/data/data/com.openlps.networktoolkit/files"
   const val USR_PATH = "$ROOT_PATH/usr"
   const val BIN_PATH = "$USR_PATH/bin"
   const val HOME_PATH = "/"
