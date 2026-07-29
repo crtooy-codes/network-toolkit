@@ -22,6 +22,10 @@ pre-release development and has no stable public APK.
 - Rename updater internals and release-signing variables to OpenLPS.
 - Add security policy, contribution guide, code of conduct, release checklist,
   release-keys runbook and update-service operations guide.
+- Define the Community and Official Services product strategy without
+  restricting GPL-covered code.
+- Add an authorized-use policy and a privacy-conscious access-review workflow
+  for future official support, training and signed-build services.
 - Rewrite the README around the OpenLPS continuation while preserving
   historical upstream credit.
 - Extend GitHub Actions to test the update-service contract.

@@ -4,7 +4,8 @@ OpenLPS welcomes improvements that preserve the GPL-3.0 license, upstream
 attribution and the authorized-use safety boundary.
 
 All contributors are expected to follow the project
-[code of conduct](CODE_OF_CONDUCT.md).
+[code of conduct](CODE_OF_CONDUCT.md) and
+[authorized-use policy](docs/AUTHORIZED_USE_POLICY.md).
 
 ## Development flow
 
@@ -16,6 +17,8 @@ All contributors are expected to follow the project
 5. Run the build and relevant tests locally.
 6. Open a pull request and wait for required CI checks.
 7. Do not publish release assets or update manifests from a feature branch.
+8. Do not add paywalls or usage restrictions to GPL-covered functionality
+   without a documented license and architecture review.
 
 Suggested branch names:
 

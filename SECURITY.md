@@ -55,6 +55,11 @@ networks owned by the tester or covered by explicit authorization. Reports
 must not contain stolen credentials, third-party private data or instructions
 whose purpose is unauthorized access.
 
+The project-wide expectations and future official-service review process are
+documented in
+[`docs/AUTHORIZED_USE_POLICY.md`](docs/AUTHORIZED_USE_POLICY.md) and
+[`docs/ACCESS_REQUEST_WORKFLOW.md`](docs/ACCESS_REQUEST_WORKFLOW.md).
+
 ## Dependency and upstream assets
 
 Every downloadable core/module asset must have a pinned size and SHA-256 or be

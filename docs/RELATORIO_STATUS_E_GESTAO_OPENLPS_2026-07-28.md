@@ -341,3 +341,34 @@ A fase `release/hardening-phase-1` avançou a base para `5.0.0-dev.3`:
 - nomes internos do atualizador migrados de Stryker para OpenLPS;
 - variáveis de assinatura renomeadas para `OPENLPS_RELEASE_*`;
 - política de segurança, guia de contribuição e checklist de release.
+
+## 13. Estratégia Community e serviços oficiais
+
+O planejamento posterior separou duas coisas que não devem ser confundidas:
+
+- **OpenLPS Community:** aplicativo e código correspondente cobertos pela
+  GPL-3.0, com as liberdades de estudo, modificação e redistribuição;
+- **Serviços Oficiais OpenLPS:** APK assinado oficial, canal estável, suporte,
+  treinamento, testes de compatibilidade e futuros serviços gerenciados.
+
+É possível cobrar pela distribuição, suporte e serviços, mas o pagamento não
+retira os direitos GPL de quem recebe o software coberto. Um módulo futuro só
+deve usar outro modelo comercial depois de revisão escrita confirmar que ele é
+uma obra separada e compatível com a arquitetura e as licenças do projeto.
+
+Também foi definido um fluxo de solicitação para futuros serviços oficiais. A
+aprovação do projeto não autoriza testes em alvos de terceiros: cada operador
+continua responsável por obter autorização escrita do proprietário, definir o
+escopo e cumprir a legislação aplicável.
+
+Documentos adicionados:
+
+- `docs/PRODUCT_STRATEGY.md`;
+- `docs/AUTHORIZED_USE_POLICY.md`;
+- `docs/ACCESS_REQUEST_WORKFLOW.md`.
+
+Nenhum pagamento, cadastro ou coleta de dados pessoais foi ativado nesta fase.
+O GitHub Pages continua sendo apenas o serviço público e estático de
+atualização. Antes de abrir um serviço pago, ainda será necessário definir
+termos, privacidade, retenção, reembolso, canal privado, países atendidos e
+obter revisão jurídica.

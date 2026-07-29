@@ -43,6 +43,9 @@ created and the manifest public key is added to the app.
 ## Documentation
 
 - [Status and management report](docs/RELATORIO_STATUS_E_GESTAO_OPENLPS_2026-07-28.md)
+- [Product strategy](docs/PRODUCT_STRATEGY.md)
+- [Authorized-use policy](docs/AUTHORIZED_USE_POLICY.md)
+- [Official-service access workflow](docs/ACCESS_REQUEST_WORKFLOW.md)
 - [Galaxy S10 smoke test](docs/DEVICE_SMOKE_TEST_SM-G973F_2026-07-28.md)
 - [Release checklist](docs/RELEASE_CHECKLIST.md)
 - [Release keys runbook](docs/RELEASE_KEYS_RUNBOOK.md)
@@ -154,7 +157,8 @@ terminal/, Xorg/, NeoLang/   Historical support modules
 
 Contributions should keep the authorized-use boundary clear, preserve GPL and
 third-party notices, and avoid committing secrets or personal data. See
-[CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+[CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) and the
+[authorized-use policy](docs/AUTHORIZED_USE_POLICY.md).
 
 ## Credits
 

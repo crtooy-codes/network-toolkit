@@ -8,6 +8,12 @@ service hosted with GitHub infrastructure:
 - GitHub Pages: public `health.json`, schema and signed manifests;
 - GitHub Releases: signed APK and reviewed core assets.
 
+This static service is not an account, payment or access-approval backend. It
+must never contain application forms, entitlement records, personal data,
+payment data or private release keys. The boundary for a future official
+service is described in
+[ACCESS_REQUEST_WORKFLOW.md](ACCESS_REQUEST_WORKFLOW.md).
+
 ## Public endpoints
 
 ```text
