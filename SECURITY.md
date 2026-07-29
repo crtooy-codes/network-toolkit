@@ -45,6 +45,8 @@ The update client rejects:
 - malformed or oversized manifests and signatures.
 
 Until the first release keys are created, remote updates remain disabled.
+The key creation and backup process is documented in
+[`docs/RELEASE_KEYS_RUNBOOK.md`](docs/RELEASE_KEYS_RUNBOOK.md).
 
 ## Authorized-use boundary
 

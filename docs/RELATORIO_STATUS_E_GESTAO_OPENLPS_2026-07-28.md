@@ -250,7 +250,8 @@ indisponível.
 
 1. Criar e guardar a chave release do APK.
 2. Criar a chave Ed25519 do manifesto e fixar somente a chave pública no app.
-3. Criar um processo reproduzível de release assinado.
+3. Validar o processo reproduzível de release assinado criado no workflow
+   manual `OpenLPS Release APK`.
 4. Publicar e validar o primeiro APK release como pré-lançamento.
 5. Publicar um artefato de chroot controlado pelo projeto. O fallback upstream
    de desenvolvimento já possui tamanho e SHA-256 fixados e falha se o arquivo
@@ -260,8 +261,7 @@ indisponível.
 7. Remover caminhos privados fixos restantes e usar `Context` quando possível.
 8. Corrigir branding antigo ainda presente, como notícias padrão e nomes
    internos `stryker`.
-9. Limpar o README, que ainda mistura documentação OpenLPS e StrykerOSS.
-10. Parar de depender das chaves debug variáveis do computador/CI; usuários
+9. Parar de depender das chaves debug variáveis do computador/CI; usuários
     públicos devem receber somente APKs assinados pela chave release oficial.
 
 ### Prioridade alta
@@ -275,11 +275,9 @@ indisponível.
 5. Reduzir o débito de lint atualmente não bloqueante.
 6. Planejar atualização do `targetSdk`, hoje em 28, sem quebrar root,
    armazenamento e instalação de pacotes.
-7. Criar `SECURITY.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, changelog e
-   avisos de terceiros mais claros.
-8. Proteger a branch `main`, exigir CI aprovado e ativar autenticação de dois
+7. Proteger a branch `main`, exigir CI aprovado e ativar autenticação de dois
    fatores nas contas mantenedoras.
-9. Definir schemas estritos para cada notícia e notificação e restringir URLs
+8. Definir schemas estritos para cada notícia e notificação e restringir URLs
    externas permitidas.
 
 ### Evolução posterior

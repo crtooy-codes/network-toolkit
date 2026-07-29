@@ -33,6 +33,8 @@ Remote updates are intentionally disabled while
 
 The APK release key and manifest key must be different. A private key, token,
 keystore password or signing secret must never be committed.
+Operational steps for this service are documented in
+[`../docs/UPDATE_SERVICE_OPERATIONS.md`](../docs/UPDATE_SERVICE_OPERATIONS.md).
 
 ## Publication layout
 

@@ -3,6 +3,9 @@
 OpenLPS welcomes improvements that preserve the GPL-3.0 license, upstream
 attribution and the authorized-use safety boundary.
 
+All contributors are expected to follow the project
+[code of conduct](CODE_OF_CONDUCT.md).
+
 ## Development flow
 
 1. Create a branch from `main`.
@@ -52,6 +55,9 @@ third-party systems.
   stable status.
 - Only maintainers with access to the offline release process may produce an
   official signed APK or manifest.
+- Release maintainers should follow
+  [docs/RELEASE_KEYS_RUNBOOK.md](docs/RELEASE_KEYS_RUNBOOK.md) and
+  [docs/RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md).
 
 ## Pull-request checklist
 
