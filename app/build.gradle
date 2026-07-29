@@ -10,20 +10,20 @@ android {
         applicationId "com.openlps.networktoolkit"
         minSdk 24
         targetSdk 28
-        versionCode 501
-        versionName "5.0.0-dev.2"
+        versionCode 502
+        versionName "5.0.0-dev.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
         release {
-            def storeFilePath = project.findProperty('STRYKER_RELEASE_STORE_FILE') ?: System.getenv('STRYKER_RELEASE_STORE_FILE')
+            def storeFilePath = project.findProperty('OPENLPS_RELEASE_STORE_FILE') ?: System.getenv('OPENLPS_RELEASE_STORE_FILE')
             if (storeFilePath) {
                 storeFile file(storeFilePath)
-                storePassword project.findProperty('STRYKER_RELEASE_STORE_PASSWORD') ?: System.getenv('STRYKER_RELEASE_STORE_PASSWORD')
-                keyAlias project.findProperty('STRYKER_RELEASE_KEY_ALIAS') ?: System.getenv('STRYKER_RELEASE_KEY_ALIAS')
-                keyPassword project.findProperty('STRYKER_RELEASE_KEY_PASSWORD') ?: System.getenv('STRYKER_RELEASE_KEY_PASSWORD')
+                storePassword project.findProperty('OPENLPS_RELEASE_STORE_PASSWORD') ?: System.getenv('OPENLPS_RELEASE_STORE_PASSWORD')
+                keyAlias project.findProperty('OPENLPS_RELEASE_KEY_ALIAS') ?: System.getenv('OPENLPS_RELEASE_KEY_ALIAS')
+                keyPassword project.findProperty('OPENLPS_RELEASE_KEY_PASSWORD') ?: System.getenv('OPENLPS_RELEASE_KEY_PASSWORD')
             }
         }
     }
@@ -33,7 +33,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            if (project.findProperty('STRYKER_RELEASE_STORE_FILE') || System.getenv('STRYKER_RELEASE_STORE_FILE')) {
+            if (project.findProperty('OPENLPS_RELEASE_STORE_FILE') || System.getenv('OPENLPS_RELEASE_STORE_FILE')) {
                 signingConfig signingConfigs.release
             }
         }
@@ -76,6 +76,8 @@ android {
 }
 
 dependencies {
+    testImplementation 'junit:junit:4.13.2'
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

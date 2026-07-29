@@ -2,7 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'release/**'
   pull_request:
     branches: [ main ]
 
@@ -14,6 +16,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Test update service contract
+        run: python3 -m unittest discover -s server/tests -p 'test_*.py'
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4

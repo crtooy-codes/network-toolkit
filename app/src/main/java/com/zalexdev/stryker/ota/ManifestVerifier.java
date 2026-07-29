@@ -19,12 +19,12 @@ public final class ManifestVerifier {
     public static boolean verify(byte[] manifest, String encodedSignature) {
         if (manifest == null || manifest.length == 0
                 || encodedSignature == null || encodedSignature.isEmpty()
-                || StrykerEndpoints.MANIFEST_PUBLIC_KEY_BASE64.isEmpty()) {
+                || OpenLpsEndpoints.MANIFEST_PUBLIC_KEY_BASE64.isEmpty()) {
             return false;
         }
         try {
             byte[] publicKey = Base64.decode(
-                    StrykerEndpoints.MANIFEST_PUBLIC_KEY_BASE64, Base64.DEFAULT);
+                    OpenLpsEndpoints.MANIFEST_PUBLIC_KEY_BASE64, Base64.DEFAULT);
             byte[] signature = Base64.decode(encodedSignature, Base64.DEFAULT);
             if (publicKey.length != PUBLIC_KEY_BYTES || signature.length != SIGNATURE_BYTES) {
                 return false;

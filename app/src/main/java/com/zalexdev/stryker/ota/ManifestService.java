@@ -20,9 +20,9 @@ public final class ManifestService {
         SharedPreferences prefs = prefs(context);
         try {
             byte[] manifestBytes =
-                    Net.getBytes(StrykerEndpoints.MANIFEST_URL, MAX_MANIFEST_BYTES);
+                    Net.getBytes(OpenLpsEndpoints.MANIFEST_URL, MAX_MANIFEST_BYTES);
             String signature = new String(
-                    Net.getBytes(StrykerEndpoints.MANIFEST_SIGNATURE_URL, MAX_SIGNATURE_BYTES),
+                    Net.getBytes(OpenLpsEndpoints.MANIFEST_SIGNATURE_URL, MAX_SIGNATURE_BYTES),
                     StandardCharsets.US_ASCII).trim();
             if (!ManifestVerifier.verify(manifestBytes, signature)) {
                 return cached(context);
@@ -50,6 +50,6 @@ public final class ManifestService {
 
     static SharedPreferences prefs(Context context) {
         return context.getApplicationContext()
-                .getSharedPreferences(StrykerEndpoints.PREFS, Context.MODE_PRIVATE);
+                .getSharedPreferences(OpenLpsEndpoints.PREFS, Context.MODE_PRIVATE);
     }
 }

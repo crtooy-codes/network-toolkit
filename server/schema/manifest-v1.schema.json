@@ -45,7 +45,8 @@
         },
         "versionName": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 64
         },
         "url": {
           "type": "string",
@@ -56,21 +57,31 @@
         },
         "size": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 1,
+          "maximum": 4294967296
         },
         "mandatory": {
           "type": "boolean"
         },
         "changelog": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 8000
         }
       }
     },
     "news": {
-      "type": "array"
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/$defs/newsItem"
+      }
     },
     "notifications": {
-      "type": "array"
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/$defs/notificationItem"
+      }
     }
   },
   "$defs": {
@@ -92,7 +103,102 @@
         },
         "size": {
           "type": "integer",
+          "minimum": 1,
+          "maximum": 4294967296
+        }
+      }
+    },
+    "contentUrl": {
+      "type": "string",
+      "pattern": "^https://(github\\.com/crtooy-codes/network-toolkit(/.*)?|crtooy-codes\\.github\\.io/network-toolkit(/.*)?)$"
+    },
+    "optionalContentUrl": {
+      "anyOf": [
+        {
+          "const": ""
+        },
+        {
+          "$ref": "#/$defs/contentUrl"
+        }
+      ]
+    },
+    "newsItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "description"],
+      "properties": {
+        "id": {
+          "type": "integer",
           "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000
+        },
+        "pin": {
+          "type": "boolean"
+        },
+        "pinned": {
+          "type": "boolean"
+        },
+        "newsDate": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "newsUrl": {
+          "$ref": "#/$defs/optionalContentUrl"
+        },
+        "imageUrl": {
+          "$ref": "#/$defs/optionalContentUrl"
+        },
+        "actionbutton1": {
+          "type": "boolean"
+        },
+        "actionbutton2": {
+          "type": "boolean"
+        },
+        "actionbutton1text": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "actionbutton2text": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "actionbutton1url": {
+          "$ref": "#/$defs/optionalContentUrl"
+        },
+        "actionbutton2url": {
+          "$ref": "#/$defs/optionalContentUrl"
+        }
+      }
+    },
+    "notificationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "body"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "url": {
+          "$ref": "#/$defs/optionalContentUrl"
         }
       }
     }

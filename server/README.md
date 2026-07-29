@@ -8,8 +8,11 @@ small manifests, signatures and documentation.
 The Pages workflow publishes only `server/public/` plus the public JSON schema.
 If a manifest is added later, the workflow requires both `manifest.json` and
 `manifest.json.sig`, rejects placeholders, parses the JSON and checks that the
-signature decodes to exactly 64 bytes. The app still performs the authoritative
-Ed25519 verification. The status endpoint is `health.json`.
+signature decodes to exactly 64 bytes. It also runs the strict contract
+validator in `scripts/validate_manifest.py`, which rejects duplicate keys,
+unknown fields, unofficial URLs, invalid sizes/hashes and malformed
+news/notifications. The app still performs the authoritative Ed25519
+verification. The status endpoint is `health.json`.
 
 GitHub Pages is configured to use GitHub Actions. Every push to `main` that
 changes the public service redeploys it without requiring this development
@@ -43,3 +46,13 @@ schema/
 ```
 
 Do not publish the template as a live manifest.
+
+## Upstream core bootstrap
+
+Development builds can bootstrap from the historical StrykerOSS chroot release
+while the first OpenLPS core asset is being prepared. Both fallback assets have
+their exact current GitHub size and SHA-256 pinned in `OpenLpsEndpoints`; the
+download is rejected if the upstream file changes.
+
+Before the first public OpenLPS release, publish a reviewed core asset in the
+official OpenLPS GitHub Release and reference it from the signed manifest.

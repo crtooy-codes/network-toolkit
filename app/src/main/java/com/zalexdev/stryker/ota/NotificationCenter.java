@@ -16,7 +16,7 @@ import com.zalexdev.stryker.R;
 
 public final class NotificationCenter {
 
-    public static final String CHANNEL_ID = "stryker_news_channel";
+    public static final String CHANNEL_ID = "openlps_news_channel";
     public static final int OTA_ID = 7999;
     public static final int OTA_PROGRESS_ID = 7998;
     private static final int NEWS_BASE = 700000;
@@ -38,7 +38,7 @@ public final class NotificationCenter {
 
     public static void postNews(Context context, int notifId, String title, String body, String url) {
         ensureChannel(context);
-        PendingIntent intent = (url != null && url.startsWith("http"))
+        PendingIntent intent = OpenLpsEndpoints.isAllowedContentUrl(url)
                 ? openUrl(context, url)
                 : openApp(context, null);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)

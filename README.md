@@ -4,7 +4,7 @@
 > exclusivamente autorizados.
 
 Esta é a nova geração comunitária mantida pela OpenLPS, atualmente em
-desenvolvimento como `5.0.0-dev.2`. Ela preserva o motor root/chroot comprovado
+desenvolvimento como `5.0.0-dev.3`. Ela preserva o motor root/chroot comprovado
 do StrykerOSS e está migrando identidade visual, caminhos, atualizações,
 documentação e interface para uma base própria.
 
@@ -19,6 +19,15 @@ documentação e interface para uma base própria.
   [crtooy-codes/network-toolkit](https://github.com/crtooy-codes/network-toolkit)
 - **Status do serviço**:
   [OpenLPS Update Service](https://crtooy-codes.github.io/network-toolkit/)
+
+Documentação de manutenção:
+
+- [Situação e gestão do projeto](docs/RELATORIO_STATUS_E_GESTAO_OPENLPS_2026-07-28.md)
+- [Relatório do teste no Galaxy S10](docs/DEVICE_SMOKE_TEST_SM-G973F_2026-07-28.md)
+- [Checklist de release](docs/RELEASE_CHECKLIST.md)
+- [Histórico de mudanças](CHANGELOG.md)
+- [Política de segurança](SECURITY.md)
+- [Como contribuir](CONTRIBUTING.md)
 
 ## Uso responsável
 
@@ -115,10 +124,10 @@ Output APKs land in `app/build/outputs/apk/`.
 Configure these in `~/.gradle/gradle.properties` (or pass via `-P` / environment):
 
 ```properties
-STRYKER_RELEASE_STORE_FILE=/path/to/keystore.jks
-STRYKER_RELEASE_STORE_PASSWORD=...
-STRYKER_RELEASE_KEY_ALIAS=...
-STRYKER_RELEASE_KEY_PASSWORD=...
+OPENLPS_RELEASE_STORE_FILE=/path/to/keystore.jks
+OPENLPS_RELEASE_STORE_PASSWORD=...
+OPENLPS_RELEASE_KEY_ALIAS=...
+OPENLPS_RELEASE_KEY_PASSWORD=...
 ```
 
 If the variables are not set, the release build is left unsigned so CI / contributors can still produce an APK.

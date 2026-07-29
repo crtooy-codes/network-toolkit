@@ -15,9 +15,15 @@ public final class CoreDownloader {
                 return asset;
             }
         }
-        String fallback = is64Bit
-                ? StrykerEndpoints.FALLBACK_CHROOT_64
-                : StrykerEndpoints.FALLBACK_CHROOT_32;
-        return new RemoteManifest.Asset(fallback, "", 0);
+        if (is64Bit) {
+            return new RemoteManifest.Asset(
+                    OpenLpsEndpoints.FALLBACK_CHROOT_64,
+                    OpenLpsEndpoints.FALLBACK_CHROOT_64_SHA256,
+                    OpenLpsEndpoints.FALLBACK_CHROOT_64_SIZE);
+        }
+        return new RemoteManifest.Asset(
+                OpenLpsEndpoints.FALLBACK_CHROOT_32,
+                OpenLpsEndpoints.FALLBACK_CHROOT_32_SHA256,
+                OpenLpsEndpoints.FALLBACK_CHROOT_32_SIZE);
     }
 }

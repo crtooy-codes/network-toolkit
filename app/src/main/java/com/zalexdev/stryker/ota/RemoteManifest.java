@@ -23,7 +23,7 @@ public final class RemoteManifest {
         }
 
         public boolean isUsable() {
-            return StrykerEndpoints.isAllowedReleaseUrl(url)
+            return OpenLpsEndpoints.isAllowedReleaseUrl(url)
                     && sha256 != null && sha256.matches("(?i)[0-9a-f]{64}")
                     && size > 0;
         }
@@ -47,6 +47,14 @@ public final class RemoteManifest {
             this.size = size;
             this.mandatory = mandatory;
             this.changelog = changelog;
+        }
+
+        public boolean isUsable() {
+            return versionCode > 0
+                    && versionName != null && !versionName.isEmpty()
+                    && OpenLpsEndpoints.isAllowedReleaseUrl(url)
+                    && sha256 != null && sha256.matches("(?i)[0-9a-f]{64}")
+                    && size > 0;
         }
     }
 
@@ -74,27 +82,26 @@ public final class RemoteManifest {
 
     public static RemoteManifest fromJson(String json) throws JSONException {
         JSONObject root = new JSONObject(json);
+        if (root.optInt("manifest_version", 0) != 1) {
+            throw new JSONException("Unsupported manifest_version");
+        }
         RemoteManifest manifest = new RemoteManifest();
-        manifest.manifestVersion = root.optInt("manifest_version", 1);
+        manifest.manifestVersion = 1;
 
-        JSONObject core = root.optJSONObject("core");
-        if (core != null) {
-            manifest.coreVersion = core.optString("version", "");
-            manifest.chroot64 = asset(core.optJSONObject("chroot64"));
-            manifest.chroot32 = asset(core.optJSONObject("chroot32"));
-        }
+        JSONObject core = root.getJSONObject("core");
+        manifest.coreVersion = core.getString("version");
+        manifest.chroot64 = asset(core.getJSONObject("chroot64"));
+        manifest.chroot32 = asset(core.optJSONObject("chroot32"));
 
-        JSONObject app = root.optJSONObject("app");
-        if (app != null) {
-            manifest.app = new AppUpdate(
-                    app.optInt("versionCode", 0),
-                    app.optString("versionName", ""),
-                    app.optString("url", ""),
-                    app.optString("sha256", ""),
-                    app.optLong("size", 0),
-                    app.optBoolean("mandatory", false),
-                    app.optString("changelog", ""));
-        }
+        JSONObject app = root.getJSONObject("app");
+        manifest.app = new AppUpdate(
+                app.getInt("versionCode"),
+                app.getString("versionName"),
+                app.getString("url"),
+                app.getString("sha256"),
+                app.getLong("size"),
+                app.getBoolean("mandatory"),
+                app.getString("changelog"));
 
         JSONArray newsArray = root.optJSONArray("news");
         if (newsArray != null) {
@@ -109,12 +116,16 @@ public final class RemoteManifest {
                 n.pinned = o.optBoolean("pin", o.optBoolean("pinned", false));
                 n.actionbutton1text = o.optString("actionbutton1text", "Open");
                 n.actionbutton2text = o.optString("actionbutton2text", "");
-                n.actionbutton1url = o.optString("actionbutton1url", "");
-                n.actionbutton2url = o.optString("actionbutton2url", "");
-                n.newsUrl = o.optString("newsUrl", "");
+                n.actionbutton1url = allowedContentUrlOrEmpty(
+                        o.optString("actionbutton1url", ""));
+                n.actionbutton2url = allowedContentUrlOrEmpty(
+                        o.optString("actionbutton2url", ""));
+                n.newsUrl = allowedContentUrlOrEmpty(o.optString("newsUrl", ""));
                 n.newsDate = o.optString("newsDate", "");
-                n.imageUrl = o.optString("imageUrl", "");
+                n.imageUrl = allowedContentUrlOrEmpty(o.optString("imageUrl", ""));
                 n.id = o.optInt("id", 0);
+                n.actionbutton1 = n.actionbutton1 && !n.actionbutton1url.isEmpty();
+                n.actionbutton2 = n.actionbutton2 && !n.actionbutton2url.isEmpty();
                 manifest.news.add(n);
             }
         }
@@ -128,7 +139,7 @@ public final class RemoteManifest {
                         o.optInt("id", 0),
                         o.optString("title", ""),
                         o.optString("body", ""),
-                        o.optString("url", "")));
+                        allowedContentUrlOrEmpty(o.optString("url", ""))));
             }
         }
         return manifest;
@@ -137,5 +148,9 @@ public final class RemoteManifest {
     private static Asset asset(JSONObject o) {
         if (o == null) return null;
         return new Asset(o.optString("url", ""), o.optString("sha256", ""), o.optLong("size", 0));
+    }
+
+    private static String allowedContentUrlOrEmpty(String url) {
+        return OpenLpsEndpoints.isAllowedContentUrl(url) ? url : "";
     }
 }

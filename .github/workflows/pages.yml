@@ -6,6 +6,8 @@ on:
     paths:
       - 'server/public/**'
       - 'server/schema/**'
+      - 'server/scripts/**'
+      - 'server/tests/**'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -29,6 +31,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Test update service contract
+        run: python3 -m unittest discover -s server/tests -p 'test_*.py'
+
       - name: Prepare static service
         shell: bash
         run: |
@@ -39,19 +44,8 @@ jobs:
           if [[ -e _site/v1/manifest.json || -e _site/v1/manifest.json.sig ]]; then
             test -s _site/v1/manifest.json
             test -s _site/v1/manifest.json.sig
-            ! grep -q 'REPLACE_' _site/v1/manifest.json
-            python3 - <<'PY'
-          import base64
-          import json
-          from pathlib import Path
-
-          manifest = Path("_site/v1/manifest.json")
-          signature = Path("_site/v1/manifest.json.sig")
-          json.loads(manifest.read_text(encoding="utf-8"))
-          decoded = base64.b64decode(signature.read_text(encoding="ascii").strip(), validate=True)
-          if len(decoded) != 64:
-              raise SystemExit("manifest.json.sig must contain one 64-byte Ed25519 signature")
-          PY
+            python3 server/scripts/validate_manifest.py \
+              _site/v1/manifest.json _site/v1/manifest.json.sig
           fi
 
       - name: Configure GitHub Pages

@@ -24,7 +24,7 @@ import java.io.File;
 public final class UpdateManager {
 
     private static final String KEY_SKIP = "ota_skip_version";
-    private static final String APK_NAME = "stryker-update.apk";
+    private static final String APK_NAME = "openlps-update.apk";
 
     private UpdateManager() {
     }
@@ -47,10 +47,7 @@ public final class UpdateManager {
             if (app.versionCode <= BuildConfig.VERSION_CODE) {
                 return;
             }
-            if (!StrykerEndpoints.isAllowedReleaseUrl(app.url)
-                    || app.sha256 == null
-                    || !app.sha256.matches("(?i)[0-9a-f]{64}")
-                    || app.size <= 0) {
+            if (!app.isUsable()) {
                 return;
             }
             SharedPreferences prefs = ManifestService.prefs(appContext);

@@ -23,15 +23,15 @@ public final class NewsRepository {
 
     public static List<News> defaults() {
         News oss = new News();
-        oss.title = "StrykerOSS is open source";
-        oss.description = "Released as free and open-source software. Visit the GitHub repository "
-                + "for source, issues and contributions.";
+        oss.title = "OpenLPS is open source";
+        oss.description = "OpenLPS continues the GPL-licensed StrykerOSS foundation. "
+                + "Visit the official repository for source, issues and contributions.";
         oss.newsDate = "2026";
         oss.id = 1;
         oss.pinned = true;
         oss.actionbutton1 = true;
         oss.actionbutton1text = "Open GitHub";
-        oss.actionbutton1url = StrykerEndpoints.GITHUB_REPO;
+        oss.actionbutton1url = OpenLpsEndpoints.GITHUB_REPO;
         oss.actionbutton2 = false;
         List<News> list = new ArrayList<>();
         list.add(oss);

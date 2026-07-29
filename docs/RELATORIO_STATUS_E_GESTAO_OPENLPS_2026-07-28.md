@@ -4,7 +4,7 @@ Data da verificação: 2026-07-28
 Projeto: OpenLPS Network Toolkit  
 Repositório: https://github.com/crtooy-codes/network-toolkit  
 Pacote Android: `com.openlps.networktoolkit`  
-Versão atual de desenvolvimento: `5.0.0-dev.2` (`versionCode 501`)  
+Versão atual de desenvolvimento: `5.0.0-dev.3` (`versionCode 502`)
 Commit validado: `879c67621cb047547b5a861b3f8bc020da59d8d9`
 
 ## 1. Resumo executivo
@@ -252,10 +252,10 @@ indisponível.
 2. Criar a chave Ed25519 do manifesto e fixar somente a chave pública no app.
 3. Criar um processo reproduzível de release assinado.
 4. Publicar e validar o primeiro APK release como pré-lançamento.
-5. Substituir o fallback atual do chroot upstream por um artefato controlado
-   pelo projeto, com tamanho e SHA-256 obrigatórios. O fallback atual aceita o
-   download sem hash fixado quando não existe manifesto, o que precisa ser
-   eliminado antes da versão pública.
+5. Publicar um artefato de chroot controlado pelo projeto. O fallback upstream
+   de desenvolvimento já possui tamanho e SHA-256 fixados e falha se o arquivo
+   for substituído, mas não deve ser a dependência definitiva da versão
+   pública.
 6. Testar instalação e atualização com a mesma assinatura release.
 7. Remover caminhos privados fixos restantes e usar `Context` quando possível.
 8. Corrigir branding antigo ainda presente, como notícias padrão e nomes
@@ -329,3 +329,17 @@ ser baixada e pode entregar notícias, notificações e arquivos do núcleo.
 Essa separação mantém o OpenLPS aberto para contribuições, mas impede que
 qualquer pessoa que edite uma página pública controle automaticamente os
 aparelhos dos usuários.
+
+## 12. Continuação após o relatório inicial
+
+A fase `release/hardening-phase-1` avançou a base para `5.0.0-dev.3`:
+
+- fallback 32/64-bit do chroot com tamanho e SHA-256 fixados;
+- rejeição de HTTP, domínios falsos, traversal, query e URLs externas não
+  oficiais;
+- contrato estrito para app, core, notícias e notificações;
+- rejeição de chaves JSON duplicadas e campos desconhecidos;
+- testes Java do cliente e testes Python do serviço;
+- nomes internos do atualizador migrados de Stryker para OpenLPS;
+- variáveis de assinatura renomeadas para `OPENLPS_RELEASE_*`;
+- política de segurança, guia de contribuição e checklist de release.

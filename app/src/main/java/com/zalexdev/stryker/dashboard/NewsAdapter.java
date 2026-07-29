@@ -26,6 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.zalexdev.stryker.R;
 import com.zalexdev.stryker.custom.News;
+import com.zalexdev.stryker.ota.OpenLpsEndpoints;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,7 +35,7 @@ import java.util.Set;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
-    private static final String PREFS = "stryker_news";
+    private static final String PREFS = "openlps_news";
     private static final String KEY_READ = "read";
 
     private final Activity activity;
@@ -157,7 +158,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     private void openLink(String url) {
-        if (url == null || url.isEmpty()) {
+        if (!OpenLpsEndpoints.isAllowedContentUrl(url)) {
             return;
         }
         try {
