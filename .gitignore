@@ -19,6 +19,8 @@ gradle.properties.local
 keystore.properties
 
 # Signing keys / secrets — never commit
+/OpenLPS-release-secrets/
+/release-secrets/
 *.jks
 *.keystore
 *.p12
@@ -35,6 +37,8 @@ firebase.json
 # Test artifacts
 test_results/
 *.coverage
+__pycache__/
+*.py[cod]
 
 # IDE — Android Studio / IntelliJ
 .idea/*

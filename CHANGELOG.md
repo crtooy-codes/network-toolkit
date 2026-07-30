@@ -7,6 +7,9 @@ pre-release development and has no stable public APK.
 
 ### Security
 
+- Add offline release-key tooling for encrypted Ed25519 manifest keys and the
+  independent RSA-4096 Android keystore, with repository/fixed-drive guards.
+- Add RFC 8032 verification tests and disposable end-to-end key-tool tests.
 - Pin size and SHA-256 for temporary 32-bit and 64-bit upstream chroot
   bootstrap assets.
 - Parse and restrict release, news, notification and image URLs to official

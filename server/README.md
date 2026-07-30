@@ -31,6 +31,13 @@ Remote updates are intentionally disabled while
 6. sign the exact UTF-8 bytes without rewriting the file afterward;
 7. publish `manifest.json` and its Base64 signature as `manifest.json.sig`.
 
+The offline helper at `scripts/release_key_tool.py` generates encrypted
+manifest keys, extracts the exact raw 32-byte public-key format used by the
+app, signs exact manifest bytes and verifies the Base64 signature. It also
+creates and records the public fingerprint of the independent Android release
+keystore. See
+[`../docs/RELEASE_KEYS_RUNBOOK.md`](../docs/RELEASE_KEYS_RUNBOOK.md).
+
 The APK release key and manifest key must be different. A private key, token,
 keystore password or signing secret must never be committed.
 Operational steps for this service are documented in

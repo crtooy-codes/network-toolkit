@@ -43,6 +43,23 @@ OpenLPS-release-secrets/
 The folder above is only an example. Do not place it inside this Git
 repository.
 
+The repository includes `server/scripts/release_key_tool.py`. It uses OpenSSL
+and Java `keytool`, refuses output inside the repository, refuses a fixed
+Windows drive by default, and never accepts passwords in command-line
+arguments. Use `--allow-fixed-drive` only on a dedicated trusted computer that
+is offline and has encrypted storage.
+
+Set long, unique passwords in the current offline shell without writing them
+to a script or shell-history command:
+
+```text
+OPENLPS_RELEASE_STORE_PASSWORD
+OPENLPS_RELEASE_KEY_PASSWORD
+OPENLPS_MANIFEST_KEY_PASSWORD
+```
+
+Do not enter real release passwords in CI, chat, issues or repository files.
+
 ## APK release keystore
 
 Generate the Android release keystore with `keytool` from a Java 17
@@ -53,6 +70,17 @@ Example command shape:
 ```powershell
 keytool -genkeypair -v -keystore openlps-release.jks -alias openlps-release -keyalg RSA -keysize 4096 -validity 10000
 ```
+
+Preferred tool command:
+
+```powershell
+python server/scripts/release_key_tool.py generate-apk `
+  --output-dir E:\OpenLPS-release-secrets\apk
+```
+
+The two APK passwords must be different. The tool creates a JKS keystore,
+exports its public certificate and records the certificate SHA-256 without
+recording either password.
 
 For GitHub Actions, store the keystore as a Base64 secret named
 `OPENLPS_RELEASE_KEYSTORE_BASE64`. Store the passwords and alias in these
@@ -78,8 +106,41 @@ The release process must produce:
 - Base64 public key for `MANIFEST_PUBLIC_KEY_BASE64`;
 - Base64 signature file `manifest.json.sig`.
 
+Preferred tool command:
+
+```powershell
+python server/scripts/release_key_tool.py generate-manifest `
+  --output-dir E:\OpenLPS-release-secrets\manifest
+```
+
+The private Ed25519 key is encrypted with AES-256-CBC. Sign and independently
+verify exact manifest bytes with:
+
+```powershell
+python server/scripts/release_key_tool.py sign-manifest `
+  --private-key E:\OpenLPS-release-secrets\manifest\manifest-ed25519-private.pem `
+  --manifest C:\release-workspace\manifest.json `
+  --signature C:\release-workspace\manifest.json.sig
+
+python server/scripts/release_key_tool.py verify-manifest `
+  --public-key E:\OpenLPS-release-secrets\manifest\manifest-ed25519-public.pem `
+  --manifest C:\release-workspace\manifest.json `
+  --signature C:\release-workspace\manifest.json.sig
+```
+
 Before setting `MANIFEST_PUBLIC_KEY_BASE64`, verify a full update in the
 laboratory with a signed manifest and a signed APK.
+
+## Backup acceptance gate
+
+Do not enable remote updates until all of these are true:
+
+- the primary secret set is stored offline outside the repository;
+- two encrypted offline backup copies exist on separate media;
+- both backups have been read back and their file hashes match the primary;
+- the passwords are stored separately from the media and recovery was tested;
+- the APK certificate and raw manifest public-key fingerprints are recorded;
+- no private file appears in `git status` or Git history.
 
 ## First public release order
 

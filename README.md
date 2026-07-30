@@ -49,6 +49,7 @@ created and the manifest public key is added to the app.
 - [Galaxy S10 smoke test](docs/DEVICE_SMOKE_TEST_SM-G973F_2026-07-28.md)
 - [Release checklist](docs/RELEASE_CHECKLIST.md)
 - [Release keys runbook](docs/RELEASE_KEYS_RUNBOOK.md)
+- [Release-key ceremony status](docs/RELEASE_KEY_CEREMONY_STATUS_2026-07-29.md)
 - [Update service operations](docs/UPDATE_SERVICE_OPERATIONS.md)
 - [Security policy](SECURITY.md)
 - [Contributing guide](CONTRIBUTING.md)

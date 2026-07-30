@@ -372,3 +372,24 @@ O GitHub Pages continua sendo apenas o serviço público e estático de
 atualização. Antes de abrir um serviço pago, ainda será necessário definir
 termos, privacidade, retenção, reembolso, canal privado, países atendidos e
 obter revisão jurídica.
+
+## 14. Preparação da cerimônia de chaves
+
+Em 2026-07-29 foi criada e testada uma ferramenta offline para gerar as duas
+identidades permanentes do projeto:
+
+- keystore Android JKS com RSA-4096;
+- chave Ed25519 criptografada para assinar o manifesto.
+
+A ferramenta também extrai a chave pública no formato exato de 32 bytes usado
+pelo aplicativo, assina e verifica manifestos, registra fingerprints públicos
+e recusa gravar segredos dentro do repositório.
+
+Os testes completos foram feitos apenas com chaves temporárias descartáveis. A
+chave permanente não foi criada porque a verificação encontrou somente a
+unidade fixa `C:` e nenhuma mídia removível para as duas cópias offline. A
+chave pública do aplicativo continua vazia e as atualizações remotas continuam
+desativadas.
+
+O registro detalhado está em
+`docs/RELEASE_KEY_CEREMONY_STATUS_2026-07-29.md`.
