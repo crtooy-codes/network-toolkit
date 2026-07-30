@@ -6,12 +6,15 @@ codes.
 
 ## Current state
 
-- Public remote updates are disabled until `MANIFEST_PUBLIC_KEY_BASE64` is set
-  in the Android app.
+- The Ed25519 public key is pinned in `MANIFEST_PUBLIC_KEY_BASE64`.
+- Do not publish a live update manifest until the signed APK and complete
+  update flow pass on a laboratory device.
 - Debug APKs are for laboratory testing only.
-- The first public release requires two independent private keys:
+- The permanent release identity uses two independent private keys:
   - Android APK release keystore;
   - Ed25519 manifest signing key.
+- Public fingerprints from the completed ceremony are recorded in
+  `RELEASE_KEY_PUBLIC_RECORD_2026-07-30.md`.
 
 ## Rules
 
@@ -59,6 +62,49 @@ OPENLPS_MANIFEST_KEY_PASSWORD
 ```
 
 Do not enter real release passwords in CI, chat, issues or repository files.
+
+On Windows, `server/scripts/run_release_key_ceremony.ps1` provides the
+interactive permanent ceremony. It:
+
+- requires the computer to be offline;
+- reports active default-route interfaces and waits until they are disconnected;
+- verifies that the primary and recovery KeePass databases are identical;
+- accepts the three KeePass-generated passwords through hidden prompts;
+- confirms every password twice and requires them to be different;
+- invokes `release_key_tool.py` without putting values on the command line;
+- generates both permanent identities on removable media;
+- signs and verifies a disposable manifest;
+- records SHA-256 for every generated file;
+- clears the three process environment variables before closing.
+
+Run this wrapper only after creating and saving these KeePass entries:
+
+```text
+APK Keystore - Store Password
+APK Keystore - Key Password
+Manifest Ed25519 Password
+```
+
+The generated `Pending-Key-Import` folder remains encrypted by the JKS and PEM
+passwords, but it is temporary. Attach its private files and records to the
+appropriate KeePass entries, verify the recovery copy, then securely remove
+the loose temporary folder.
+
+For a local signed-build check, extract only `openlps-release.jks` from the
+KeePass attachment to a temporary directory outside the repository. Then run:
+
+```powershell
+.\server\scripts\build_local_signed_release.ps1 `
+  -KeystorePath 'X:\temporary-signing\openlps-release.jks' `
+  -JavaHome 'C:\path\to\jdk-17' `
+  -AndroidSdk 'C:\path\to\AndroidSDK'
+```
+
+The helper requests the store and key passwords through hidden prompts,
+verifies the permanent public certificate fingerprint before and after the
+build, and clears all signing variables from its process. Remove the temporary
+JKS after verifying the resulting APK. Never install the permanent-signature
+APK over a development-signature installation.
 
 ## APK release keystore
 

@@ -10,8 +10,8 @@ android {
         applicationId "com.openlps.networktoolkit"
         minSdk 24
         targetSdk 28
-        versionCode 502
-        versionName "5.0.0-dev.3"
+        versionCode 503
+        versionName "5.0.0-dev.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

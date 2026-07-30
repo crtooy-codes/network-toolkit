@@ -3,12 +3,43 @@
 All notable OpenLPS changes are recorded here. The project is still in
 pre-release development and has no stable public APK.
 
-## 5.0.0-dev.3 — unreleased
+## 5.0.0-dev.4 — unreleased
+
+### Security
+
+- Pin the permanent 32-byte Ed25519 update-manifest public key after the
+  verified offline ceremony.
+- Record the public APK-certificate and manifest-key SHA-256 fingerprints.
+- Store the encrypted private material in the KeePass primary and verified
+  recovery vaults, without committing private keys or passwords.
+- Add a hidden-prompt local signed-build helper that enforces the permanent
+  APK-certificate fingerprint and clears process signing variables.
+- Produce and independently verify the first optimized `dev.4` APK signed by
+  the permanent RSA-4096 release certificate without installing or publishing
+  it.
+
+### Changed
+
+- Advance the laboratory build to version code 503.
+- Validate an in-place laboratory-device upgrade from `dev.3` after a
+  hash-verified private-data backup, preserving the Android package UID,
+  first-install timestamp and application state.
+- Make the Windows key-ceremony assistant wait for network disconnection and
+  report the active route instead of terminating immediately.
+
+### Fixed
+
+- Initialize the repository path after PowerShell establishes
+  `$PSScriptRoot`, preserving compatibility with Windows PowerShell 5.1.
+
+## 5.0.0-dev.3 — 2026-07-29
 
 ### Security
 
 - Add offline release-key tooling for encrypted Ed25519 manifest keys and the
   independent RSA-4096 Android keystore, with repository/fixed-drive guards.
+- Add an offline Windows ceremony wrapper with hidden confirmed prompts,
+  removable-media checks, KeePass backup verification and file inventory.
 - Add RFC 8032 verification tests and disposable end-to-end key-tool tests.
 - Pin size and SHA-256 for temporary 32-bit and 64-bit upstream chroot
   bootstrap assets.

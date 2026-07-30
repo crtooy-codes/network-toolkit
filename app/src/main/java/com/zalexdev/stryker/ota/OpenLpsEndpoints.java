@@ -16,10 +16,11 @@ public final class OpenLpsEndpoints {
 
     /*
      * Raw 32-byte Ed25519 public key encoded with standard Base64.
-     * Intentionally empty during development: remote updates remain disabled
-     * until the offline release key is created and its public half is pinned.
+     * Pinned from the offline release-key ceremony on 2026-07-30. The private
+     * half remains encrypted in the offline release vault.
      */
-    public static final String MANIFEST_PUBLIC_KEY_BASE64 = "";
+    public static final String MANIFEST_PUBLIC_KEY_BASE64 =
+            "Ve3GGmbd5amE0wJYHqrdxg8KDU4zdUZccsU8IQMyktU=";
 
     /*
      * Temporary StrykerOSS bootstrap assets. Size and GitHub-provided SHA-256
